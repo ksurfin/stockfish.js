@@ -1,3 +1,38 @@
+## VocalChess source mirror
+
+This fork is the Corresponding Source for the Stockfish engine that ships inside the **VocalChess** iOS app.
+It is published under GPLv3 §6. VocalChess bundles two files from stockfish.js **19.0.0** and does not modify them:
+
+| File | sha256 |
+|---|---|
+| `stockfish-19-lite-single.js` | `d3344124ab067fb0b90ee77873bb8e9fbf5fc01bc525fe714b0f942581e889e6` |
+| `stockfish-19-lite-single.wasm` | `57ac2d72312aba346760e3f173f687a8c211208e97a87268436f7f0e10bb5387` |
+
+They are the files from the npm package `stockfish@19.0.0`, which match the
+[v19.0.0 release assets](https://github.com/nmrugg/stockfish.js/releases/tag/v19.0.0).
+Their source is tag `v19.0.0` (commit `9cb3e5066d48f1a35d792afeda36eff37ae60570`) of
+[nmrugg/stockfish.js](https://github.com/nmrugg/stockfish.js). This `vocalchess` branch is that tag plus
+this section and one more file:
+
+- `src/nn-61e7af4bb97d.nnue`: the lite NNUE network embedded in the `.wasm`. Upstream downloads it at build
+  time (`scripts/net.sh`) and does not commit it. It is committed here so the source stays complete.
+  sha256 `61e7af4bb97d51eeeb25d322916f86513b5cd3a827ce189c98c6e31946f99e5b`.
+
+**Build.** Install [emscripten](https://emscripten.org/docs/getting_started/downloads.html) **3.1.7**
+(`emsdk install 3.1.7 && emsdk activate 3.1.7`), then run the following from the repo root:
+
+```
+node build.js --single-threaded --lite
+```
+
+The command writes `src/stockfish-19-lite-single.js` and `.wasm`. `scripts/net.sh` finds the committed net,
+validates it against its name, and skips the download.
+
+Stockfish is licensed under GPLv3 (`Copying.txt`). The Stockfish developers are listed in `AUTHORS`.
+VocalChess runs the engine as a separate program and talks to it only through UCI text messages.
+
+---
+
 ### Stockfish.js
 
 <a href="https://github.com/nmrugg/stockfish.js">Stockfish.js</a> is a WASM implementation by Nathan Rugg of the <a href="https://github.com/official-stockfish/Stockfish">Stockfish</a> chess engine, for [Chess.com's](https://www.chess.com/analysis) in-browser engine.
