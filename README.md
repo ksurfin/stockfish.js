@@ -1,7 +1,7 @@
-## VocalChess source mirror
+## Source mirror
 
-This fork is the Corresponding Source for the Stockfish engine that ships inside the **VocalChess** iOS app.
-It is published under GPLv3 §6. VocalChess bundles two files from stockfish.js **19.0.0** and does not modify them:
+This fork is the GPLv3 §6 Corresponding Source for a binary distribution of two unmodified files from
+stockfish.js **19.0.0**:
 
 | File | sha256 |
 |---|---|
@@ -11,7 +11,7 @@ It is published under GPLv3 §6. VocalChess bundles two files from stockfish.js 
 They are the files from the npm package `stockfish@19.0.0`, which match the
 [v19.0.0 release assets](https://github.com/nmrugg/stockfish.js/releases/tag/v19.0.0).
 Their source is tag `v19.0.0` (commit `9cb3e5066d48f1a35d792afeda36eff37ae60570`) of
-[nmrugg/stockfish.js](https://github.com/nmrugg/stockfish.js). This `vocalchess` branch is that tag plus
+[nmrugg/stockfish.js](https://github.com/nmrugg/stockfish.js). This branch is that tag plus
 this section and one more file:
 
 - `src/nn-61e7af4bb97d.nnue`: the lite NNUE network embedded in the `.wasm`. Upstream downloads it at build
@@ -29,7 +29,6 @@ The command writes `src/stockfish-19-lite-single.js` and `.wasm`. `scripts/net.s
 validates it against its name, and skips the download.
 
 Stockfish is licensed under GPLv3 (`Copying.txt`). The Stockfish developers are listed in `AUTHORS`.
-VocalChess runs the engine as a separate program and talks to it only through UCI text messages.
 
 ---
 
